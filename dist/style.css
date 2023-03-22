@@ -1,0 +1,25 @@
+body{
+    margin: 0;
+}
+main{
+    display: grid;
+    grid-template-columns: 0.5fr 1fr;
+    min-height: calc(100vh - 70px);
+}
+header{
+    background-color: rgb(154, 128, 128);
+    min-height: 70px;
+}
+h1{
+    margin: 0;
+}
+aside{
+    background-color: gray;
+    
+}
+section{
+    background-color: rgb(197, 193, 193);
+}
+button{
+    width: 100%;
+}
