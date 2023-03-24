@@ -1,19 +1,24 @@
+*,*::before,*::after{
+    box-sizing: border-box
+}
 body{
     margin: 0;
 }
 main{
     display: grid;
-    grid-template-columns: 0.5fr 1fr;
+    grid-template-columns: 0.3fr 1fr;
     min-height: calc(100vh - 70px);
 }
 header{
     background-color: rgb(154, 128, 128);
     min-height: 70px;
+    padding: 15px 0px 0px 35px;
 }
 h1{
     margin: 0;
 }
 aside{
+    padding: 40px 45px 0px 45px;
     background-color: gray;
     
 }
@@ -22,4 +27,112 @@ section{
 }
 button{
     width: 100%;
+    padding: 10px;
+    border-style: none;
+}
+.todoList{
+    padding: 40px 45px 0px 45px;
+}
+.projectTitle>h1{
+    padding-bottom: 20px;
+}
+.projectTitle{
+   
+}
+aside>h1{
+    padding-bottom: 20px;
+}
+aside>button{
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    background-color: gray;
+}
+aside>button:hover{
+    background-color: rgb(197, 193, 193)
+}
+.addTaskButton{
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    background-color: gray;
+    background-color: rgb(197, 193, 193);
+}
+.addTaskButton:hover{
+    background-color: gray;
+}
+
+.projectFormContainer{
+    display: none;
+    flex-direction: column;
+    height: 100px;
+    width: 400px;
+    margin: 0 auto;
+    background-color: rgba(0, 0, 0, 0.044);
+    position: fixed;
+	top: 200px;
+	right: 0px;
+	left: 0px;
+    
+}
+.projectFormContainer.active{
+    display: flex;
+}
+
+.todoFormContainer{
+    display: none;
+    flex-direction: column;
+    height: 100px;
+    width: 400px;
+    margin: 0 auto;
+    background-color: rgba(0, 0, 0, 0.044);
+    position: fixed;
+	top: 200px;
+	right: 0px;
+	left: 0px;
+    transform: scale(1.5);
+}
+.todoFormContainer.active{
+    display: flex;
+}
+form{
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 40px;
+    
+    
+}
+.formButtons>button:nth-child(1){
+    background-color: green;
+    
+}
+.formButtons>button:nth-child(2){
+    background-color: red;
+    
+}
+.formButtons{
+    display: flex;
+
+}
+
+/* .formButtons>button{
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    background-color: gray;
+} */
+
+input{
+    width: 100%;
+    padding: 10px;
+    outline: transparent;
+}
+.projectList>div{
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 12px;
+    gap: 10px;
+    background-color: gray;
+    background-color: cadetblue;
 }

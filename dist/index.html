@@ -17,9 +17,12 @@
       <div class="headerTitle"><h1>Todo List</h1></div>
     </header>
     <main>
-      <aside class="projectList">
+      <aside class="project">
         <h1>Projects</h1>
-        <button><i class="fa fa-plus"></i>Add Projects</button>
+        <div class="projectList">
+        
+        </div>
+        <button class="addProjectButton"><i class="fa fa-plus"></i>Add Projects</button>
       </aside>
 
       <section class="todoList">
@@ -29,9 +32,26 @@
         
         <div class="taskContainer">
           <div class="addTask">
-            <button><i class="fa fa-plus"></i>Add Task</button>
+            <button class="addTaskButton"><i class="fa fa-plus"></i>Add Task</button>
             <div class="tasks"></div>
           </div>
+        </div>
+        <div class="projectFormContainer">
+          <form class="projectForm">
+            <input type="text" placeholder="Enter Project Name">
+            <div class="formButtons">
+            <button class="addButton" type="submit">Add</button>
+            <button class="cancelButton">Cancel</button></div>
+          </form>
+        </div>
+
+        <div class="todoFormContainer">
+          <form class="todoForm">
+            <input type="text" placeholder="Enter A Task">
+            <div class="formButtons">
+            <button type="submit">Add</button>
+            <button class="cancelButton">Cancel</button></div>
+          </form>
         </div>
       </section>
     </main>
