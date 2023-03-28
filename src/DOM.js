@@ -11,6 +11,9 @@ export const selectors = () => {
     todoForm: document.querySelector('.todoForm'),
     projectNameInput: document.querySelector('.projectNameInput'),
     todoTaskInput: document.querySelector('.todoTaskInput'),
-    taskList: document.querySelector('.tasks')
+    taskList: document.querySelector('.tasks'),
+    projectNameContainer: document.querySelector('.projectNameContainer'),
+    mainTitle: document.querySelector('.mainTitle')
+
   };
 };
