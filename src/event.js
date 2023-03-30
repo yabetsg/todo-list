@@ -4,8 +4,8 @@ import TaskList from "./tasklist";
 import Task from "./task";
 
 
-//Idea: combine project class with task class so project name will be associated with its tasks
-//      or make a new class that combines both??? idk
+
+
 
 
 const projectButton = selectors().addProjectButton;
@@ -20,8 +20,8 @@ const todoTaskInput = selectors().todoTaskInput;
 const taskList = selectors().taskList;
 const projectNameContainer = selectors().projectNameContainer;
 const mainTitle = selectors().mainTitle;
- const task = new Task();
-const taskLists = new TaskList();
+ 
+const allTaskLists = selectors().allTaskLists;
 let count = 0;
 export const addProjectButtonEvent = (() =>{
 
@@ -40,84 +40,94 @@ export const addTaskButtonEvent = (() =>{
 })();
 
   const project = new Project();
-export const projectFormEvent = (() => { 
+  const storage = [];
 
+export const projectFormEvent = (() => { 
+    const task = new Task();
     projectForm.addEventListener('submit', (e) => { 
        
-      
-      
+        count = 0;
+        
         const button = document.createElement('button');
         button.classList.add('projectNameContainer')
         const icon = document.createElement('i');
-        const span = document.createElement('span');
-        project.setTitle(projectNameInput.value);
-        project.setList(project.getTitle());
-        span.innerText = project.getTitle(); 
-        button.appendChild(icon);
-        button.appendChild(span);
-        projectList.appendChild(button); 
+        const titleName = document.createElement('span');
         
+        task.setTitle(projectNameInput.value);
+        titleName.innerText = task.getTitle(); 
+        task.setNameList({tite: task.getTitle()});
+      
+        button.appendChild(icon);
+        button.appendChild(titleName);
+        projectList.appendChild(button); 
+        storage.push({title: task.getTitle()});
+         console.log(storage);
+         
         projectFormContainer.classList.remove('active');
         projectNameInput.value = '';
         if(button.classList.contains('projectNameContainer')){
-            button.addEventListener('click', () =>{
-            const list = project.list;
-            const indexOfProjectName = list.indexOf(span.innerText);   
-            mainTitle.innerText = list[indexOfProjectName];
-            while (taskList.childNodes.length > 0) {
-                taskList.removeChild(taskList.firstChild);
-              }
-            
-            
+            button.addEventListener('click', (e) =>{
+                while (taskList.firstChild) {
+                    taskList.removeChild(taskList.firstChild);
+                }
+                const clickedTitle = e.target.innerText;
+                console.log(e.target.innerText);
+                mainTitle.innerText = clickedTitle;
+
+                for (let i = 0; i < storage.length; i++) {
+                    const element = storage[i];
+                    if( element.title === mainTitle.innerText){
+                        const objectKeys = Object.keys(element)
+                        console.log(objectKeys.length);
+                        for (let j = 0; j < objectKeys.length; j++) { 
+                            if(element[`task${j}`]!=undefined){
+                                const button = document.createElement('button'); 
+                                button.classList.add('todoTitle'); 
+                                button.innerText = element[`task${j}`]; 
+                                taskList.appendChild(button); 
+                            }
+                           
+                        } 
+                       
+                        console.log(element);
+                        
+                }
+                
+                }
+                
+               taskFormEvent();
+        
         });
         }else{
-            console.log("not clicked");
+            
         }
     });
      
 
 
 })();
-const createTask = (event) =>{
-    event.preventDefault();
-    const button = document.createElement('button');
-        button.classList.add('todoTitle');
-        console.log(todoTaskInput.value);
-        task.setTitle(todoTaskInput.value);
-        taskLists.setList(task.getTitle());
-        console.log(taskLists);
-        button.innerText = taskLists.list[count];
-        count++
-        taskList.appendChild(button); 
+const createTask = () =>{
+         const task = new Task();
+        for (let i = 0; i < storage.length; i++) {
+            const element = storage[i];
+            const button = document.createElement('button');
+            button.classList.add('todoTitle'); 
+            task.setName(todoTaskInput.value);
+            if( element.title === mainTitle.innerText){
+                element[`task${count}`] = task.getName(); 
+                button.innerText =  element[`task${count}`]; 
+                taskList.appendChild(button); 
+                console.log(element);
+                count++;
+        }
+        
+        }
         todoFormContainer.classList.remove('active');
-        todoTaskInput.value = '';
+        todoTaskInput.value = ''; 
+          
 };
-export const taskFormEvent = (() => { 
+export const taskFormEvent = () => { 
     todoForm.addEventListener('submit', createTask);
-    // todoForm.addEventListener('submit', (e) => { 
-       
-    //     const button = document.createElement('button');
-    //     button.classList.add('todoTitle');
-    //     console.log(todoTaskInput.value);
-    //     task.setTitle(todoTaskInput.value);
-    //     taskLists.setList(task.getTitle());
-    //     console.log(taskLists);
-    //     button.innerText = taskLists.list[count];
-    //     count++
-    //     taskList.appendChild(button); 
-    //     todoFormContainer.classList.remove('active');
-    //     todoTaskInput.value = '';
-       
-    // });
-})();
-
-// export const projectNameContainerEvent = (() =>{
-//     console.log(projectNameContainer);
-//     if(projectNameContainer != null){
-//         projectNameContainer.addEventListener('click', () =>{
-//         console.log('clicked');
-//     });
-//     }else{
-//         console.log("not clicked");
-//     }
-// })();
+    
+};
+taskFormEvent();

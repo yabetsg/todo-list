@@ -12,6 +12,7 @@ export const selectors = () => {
     projectNameInput: document.querySelector('.projectNameInput'),
     todoTaskInput: document.querySelector('.todoTaskInput'),
     taskList: document.querySelector('.tasks'),
+    allTaskLists: document.querySelector('.todoTitle'),
     projectNameContainer: document.querySelector('.projectNameContainer'),
     mainTitle: document.querySelector('.mainTitle')
 

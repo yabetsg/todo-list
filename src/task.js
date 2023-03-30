@@ -1,7 +1,9 @@
 export default class Task {
-    constructor(title){
+    constructor(title,name){
         this.title = title;
-
+        this.name = name;
+        this.list = [];
+        this.list2 = [];
     }
 
     getTitle(){
@@ -9,6 +11,18 @@ export default class Task {
     }
     setTitle(newTitle){
         this.title = newTitle; 
+    }
+    getName(){
+        return this.name;
+    }
+    setName(newName){
+        this.name = newName; 
+    }
+    setNameList(newList){
+        this.list.push(newList);
+    }
+    setTitleList(newList){
+        this.list2.push(newList);
     }
 
     getDueDate(){
