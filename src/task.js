@@ -1,34 +1,37 @@
+import { selectors } from "./DOM";
+import { storage } from "./event";
+const todoFormContainer = selectors().todoFormContainer;
+const todoTaskInput = selectors().todoTaskInput;
+const taskList = selectors().taskList;
+const mainTitle = selectors().mainTitle;
 export default class Task {
-    constructor(title,name){
-        this.title = title;
-        this.name = name;
-        this.list = [];
-        this.list2 = [];
-    }
+  constructor() {
+    this.count = 0;
+  }
 
-    getTitle(){
-        return this.title;
+  createTask() {
+    console.log(`storage: ${storage}`);
+    for (let i = 0; i < storage.length; i++) {
+      const element = storage[i];
+      const button = document.createElement('button');
+      button.classList.add('todoTitle');
+      const taskName = todoTaskInput.value;
+      
+      if (element.title === mainTitle.innerText) {
+        element[`task${this.count}`] = taskName;
+        button.innerText = element[`task${this.count}`];
+        taskList.appendChild(button);
+        console.log(element);
+        this.count++;
+      }
     }
-    setTitle(newTitle){
-        this.title = newTitle; 
-    }
-    getName(){
-        return this.name;
-    }
-    setName(newName){
-        this.name = newName; 
-    }
-    setNameList(newList){
-        this.list.push(newList);
-    }
-    setTitleList(newList){
-        this.list2.push(newList);
-    }
+    todoFormContainer.classList.remove('active');
+    todoTaskInput.value = '';
+  };
 
-    getDueDate(){
-        return this.dueDate;
+  removeTasks() {
+    while (taskList.firstChild) {
+      taskList.removeChild(taskList.firstChild);
     }
-    setDueDate(){
-        this.dueDate = this.dueDate;
-    }
+  }
 }
