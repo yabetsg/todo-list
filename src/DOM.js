@@ -1,7 +1,7 @@
 export const selectors = () => {
   return {
     addButton: document.querySelector(".addButton"),
-    cancelButton: document.querySelector(".cancelButton"),
+    cancelButton: document.querySelectorAll(".cancelButton"),
     addProjectButton: document.querySelector(".addProjectButton"),
     addTaskButton: document.querySelector(".addTaskButton"),
     projectFormContainer: document.querySelector('.projectFormContainer'),
@@ -14,7 +14,7 @@ export const selectors = () => {
     taskList: document.querySelector('.tasks'),
     allTaskLists: document.querySelector('.todoTitle'),
     projectNameContainer: document.querySelector('.projectNameContainer'),
-    mainTitle: document.querySelector('.mainTitle')
-
+    mainTitle: document.querySelector('.mainTitle'),
+    inbox: document.getElementById('inbox')
   };
 };

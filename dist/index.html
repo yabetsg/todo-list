@@ -10,7 +10,6 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-  </head>
     <link rel="stylesheet" href="style.css" />
     <script src="main.js" defer></script>
   </head>
@@ -19,12 +18,12 @@
       <div class="headerTitle"><h1>Todo List</h1></div>
     </header>
     <main>
+     
       <aside class="project">
+         <button id="inbox">Inbox</button>
         <h1>Projects</h1>
-        <div class="projectList">
-          
-        </div>
         
+        <div class="projectList"></div>
         <button class="addProjectButton"><i class="fa fa-plus"></i>Add Projects</button>
       </aside>
 
@@ -37,25 +36,27 @@
           <div class="addTask">
             <div class="tasks"></div>
             <button class="addTaskButton"><i class="fa fa-plus"></i>Add Task</button>
-            
           </div>
         </div>
+
         <div class="projectFormContainer">
           <form class="projectForm" action="#" method="get">
             <input class="projectNameInput" type="text" placeholder="Enter Project Name">
             <div class="formButtons">
-            <button class="addButton" type="submit">Add</button>
-            <button class="cancelButton">Cancel</button></div>
-          </form>
+              <button class="addButton" type="submit">Add</button>
+            </div>
+          </form> 
+          <button class="cancelButton">Cancel</button>
         </div>
 
         <div class="todoFormContainer">
           <form class="todoForm" method="get">
             <input class="todoTaskInput" type="text" placeholder="Enter A Task">
             <div class="formButtons">
-            <button type="submit">Add</button>
-            <button class="cancelButton">Cancel</button></div>
+              <button class="addButton" type="submit">Add</button>
+            </div>
           </form>
+          <button class="cancelButton">Cancel</button>
         </div>
       </section>
     </main>

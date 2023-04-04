@@ -4,8 +4,7 @@ import Task from "./task";
 
 const task = new Task();
 
-
-
+// fix: task not being created inside inbox
 
 const projectButton = selectors().addProjectButton;
 const projectFormContainer = selectors().projectFormContainer;
@@ -17,7 +16,10 @@ const projectList = selectors().projectList;
 const projectNameInput = selectors().projectNameInput;
 const taskList = selectors().taskList;
 const mainTitle = selectors().mainTitle;
- 
+const cancelButton = selectors().cancelButton;
+const inbox = selectors().inbox;
+const todoTaskInput = selectors().todoTaskInput;
+
 export const storage = [];
 export const addProjectButtonEvent = (() =>{
 
@@ -34,12 +36,12 @@ export const addTaskButtonEvent = (() =>{
     });
 })();
 
-  
-  
+
+export const inboxStorage = [];
 
 export const projectFormEvent = (() => { 
 
-    projectForm.addEventListener('submit', (e) => { 
+    projectForm.addEventListener('submit', (e) => {
         task.count = 0;
         const button = document.createElement('button');
         button.classList.add('projectNameContainer')
@@ -73,12 +75,10 @@ export const projectFormEvent = (() => {
                                 taskList.appendChild(button); 
                             }
                            
-                        } 
-                        
+                        }    
                 }
                 
-                }
-      
+             }
         
         });
         }else{
@@ -86,13 +86,62 @@ export const projectFormEvent = (() => {
         }
     });
      
-
-
 })();
 
 export const taskFormEvent = (() => { 
     todoForm.addEventListener('submit', ()=>{
-        task.createTask();
+         task.createTask();
+       
     });
 
 })();
+
+cancelButton.forEach(element => {
+    element.addEventListener('click', ()=>{
+            projectFormContainer.classList.remove('active');
+            todoFormContainer.classList.remove('active');
+        })
+
+}); 
+
+
+ inbox.addEventListener('click', (e) =>{
+        task.removeTasks();
+       
+        todoForm.addEventListener('submit', ()=>{
+             const defaultButton = document.createElement('button');
+        defaultButton.classList.add('todoTitle');
+        const taskName = todoTaskInput.value;
+        console.log(e);
+       
+            defaultButton.innerText = "todoTaskInput.value";
+            taskList.appendChild(defaultButton);
+        
+          
+       });
+
+
+
+
+
+        const clickedProjectTitle = e.target.innerText;
+        mainTitle.innerText = clickedProjectTitle; 
+        const button = document.createElement('button'); 
+        button.classList.add('todoTitle'); 
+        
+        for (let i = 0; i < inboxStorage.length; i++) {
+            const element = inboxStorage[i];
+            const button = document.createElement('button'); 
+            button.innerText = element;
+            button.classList.add('todoTitle'); 
+            taskList.appendChild(button);
+            
+        }
+        
+        console.log("Storage:"+ inboxStorage);
+        
+
+    });
+
+const event = new Event('click');
+inbox.dispatchEvent(event);

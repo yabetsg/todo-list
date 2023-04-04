@@ -103,11 +103,11 @@ form{
     
     
 }
-.formButtons>button:nth-child(1){
+.addButton{
     background-color: green;
     
 }
-.formButtons>button:nth-child(2){
+.cancelButton{
     background-color: red;
     
 }
@@ -156,4 +156,14 @@ i{
     content: "\f03a";
     font-family: "Font Awesome 5 Free";
     font-weight: 900;
+}
+#inbox::before{
+    content: "\f01c";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+
+}
+#inbox{
+    padding-left: 0px;
+    margin-bottom:10px ;
 }
