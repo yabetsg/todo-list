@@ -142,6 +142,7 @@ i{
 
 .tasks>button{
     display: flex;
+    align-items: center;
     justify-content: flex-start;
     padding-left: 12px;
     gap: 10px;
@@ -166,4 +167,10 @@ i{
 #inbox{
     padding-left: 0px;
     margin-bottom:10px ;
+}
+.dateInput{
+   width: 127px; 
+   height: 30px;
+   background-color: inherit;
+   border-style: none;
 }

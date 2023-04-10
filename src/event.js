@@ -4,7 +4,7 @@ import Task from "./task";
 
 const task = new Task();
 
-// fix: task not being created inside inbox
+
 
 const projectButton = selectors().addProjectButton;
 const projectFormContainer = selectors().projectFormContainer;
@@ -21,6 +21,7 @@ const inbox = selectors().inbox;
 const todoTaskInput = selectors().todoTaskInput;
 
 export const storage = [];
+storage.push({title:"Inbox"});
 export const addProjectButtonEvent = (() =>{
 
     projectButton.addEventListener('click', ()=>{
@@ -35,6 +36,8 @@ export const addTaskButtonEvent = (() =>{
         todoFormContainer.classList.add('active');
     });
 })();
+
+// TODO: due data feature 
 
 
 export const inboxStorage = [];
@@ -81,8 +84,6 @@ export const projectFormEvent = (() => {
              }
         
         });
-        }else{
-            
         }
     });
      
@@ -107,27 +108,12 @@ cancelButton.forEach(element => {
 
  inbox.addEventListener('click', (e) =>{
         task.removeTasks();
-       
-        todoForm.addEventListener('submit', ()=>{
-             const defaultButton = document.createElement('button');
-        defaultButton.classList.add('todoTitle');
-        const taskName = todoTaskInput.value;
-        console.log(e);
-       
-            defaultButton.innerText = "todoTaskInput.value";
-            taskList.appendChild(defaultButton);
+        mainTitle.innerText = 'inbox';
+      
         
-          
-       });
-
-
-
-
-
         const clickedProjectTitle = e.target.innerText;
         mainTitle.innerText = clickedProjectTitle; 
-        const button = document.createElement('button'); 
-        button.classList.add('todoTitle'); 
+
         
         for (let i = 0; i < inboxStorage.length; i++) {
             const element = inboxStorage[i];
@@ -138,9 +124,6 @@ cancelButton.forEach(element => {
             
         }
         
-        console.log("Storage:"+ inboxStorage);
-        
-
     });
 
 const event = new Event('click');

@@ -36,11 +36,12 @@
           <div class="addTask">
             <div class="tasks"></div>
             <button class="addTaskButton"><i class="fa fa-plus"></i>Add Task</button>
+           
           </div>
         </div>
 
         <div class="projectFormContainer">
-          <form class="projectForm" action="#" method="get">
+          <form class="projectForm" action="#">
             <input class="projectNameInput" type="text" placeholder="Enter Project Name">
             <div class="formButtons">
               <button class="addButton" type="submit">Add</button>
@@ -50,8 +51,12 @@
         </div>
 
         <div class="todoFormContainer">
-          <form class="todoForm" method="get">
+          
+          <form class="todoForm" action="#">
             <input class="todoTaskInput" type="text" placeholder="Enter A Task">
+           
+            <label for="date">Due Date:</label>
+            <input type="date" name="Due_date" id="">
             <div class="formButtons">
               <button class="addButton" type="submit">Add</button>
             </div>
