@@ -7,38 +7,50 @@ const todoFormContainer = selectors().todoFormContainer;
 const todoTaskInput = selectors().todoTaskInput;
 const taskList = selectors().taskList;
 const mainTitle = selectors().mainTitle;
+const dueDate = selectors().dueDate;
 
-console.log(format(new Date(2020,8,11),'yyyy-MM-dd'));
 export default class Task {
   constructor() {
     this.count = 0;
   }
-
+  
   createTask() {
+    
     for (let i = 0; i < storage.length; i++) {
-      
+       inboxStorage.push({});
       const element = storage[i];
+      const inboxElement = inboxStorage[i];
       const button = document.createElement('button');
       const date = document.createElement('input');
-      
+      const span = document.createElement('span');
       date.type = 'date';
       date.classList.add('dateInput')
-     
-      console.log(date);
+      let dateValue = dueDate.value;
+    
       button.classList.add('todoTitle');
       const taskName = todoTaskInput.value;
-      console.log(element.title);
-      console.log(mainTitle.innerText);
       
-      button.appendChild(date);
       if (element.title === mainTitle.innerText) {
         element[`task${this.count}`] = taskName;
+        inboxElement[`task${this.count}`] = taskName;
+       
+        if(dateValue===''){
+          dateValue = 'No Due Date';
+        } 
+        inboxElement[`date${this.count}`] = dateValue;
+        element[`date${this.count}`] = dateValue;
         button.innerText = element[`task${this.count}`];
-        inboxStorage.push(element[`task${this.count}`]); 
+        span.innerText = element[`date${this.count}`];
         
+        inboxStorage.push({[`task${this.count}`]:element[`task${this.count}`],[`date${this.count}`]:element[`date${this.count}`]});
+        // inboxStorage[i]push({tasks:element[`task${this.count}`],date:element[`date${this.count}`]}); 
+        // inboxElement[`task${this.count}`];
+        button.appendChild(span);
         taskList.appendChild(button);
+        // console.log(element);
+        console.log(inboxStorage);
+       
         
-        console.log(element);
         this.count++;
       }
     }

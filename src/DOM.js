@@ -15,6 +15,7 @@ export const selectors = () => {
     allTaskLists: document.querySelector('.todoTitle'),
     projectNameContainer: document.querySelector('.projectNameContainer'),
     mainTitle: document.querySelector('.mainTitle'),
-    inbox: document.getElementById('inbox')
+    inbox: document.getElementById('inbox'),
+    dueDate: document.getElementById('date')
   };
 };

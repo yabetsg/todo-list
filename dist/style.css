@@ -3,6 +3,7 @@
 }
 body{
     margin: 0;
+    
 }
 main{
     display: grid;
@@ -23,6 +24,7 @@ aside{
     
 }
 section{
+    
     background-color: rgb(197, 193, 193);
 }
 button{
@@ -171,6 +173,9 @@ i{
 .dateInput{
    width: 127px; 
    height: 30px;
-   background-color: inherit;
+   /* background-color: inherit; */
    border-style: none;
+}
+.todoTitle>span{
+    margin-left: 500px;
 }

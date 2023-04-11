@@ -4,7 +4,7 @@ import Task from "./task";
 
 const task = new Task();
 
-
+// TODO: fix inbox due date issue
 
 const projectButton = selectors().addProjectButton;
 const projectFormContainer = selectors().projectFormContainer;
@@ -37,7 +37,7 @@ export const addTaskButtonEvent = (() =>{
     });
 })();
 
-// TODO: due data feature 
+
 
 
 export const inboxStorage = [];
@@ -59,7 +59,7 @@ export const projectFormEvent = (() => {
         storage.push({title: projectName});
         projectFormContainer.classList.remove('active');
         projectNameInput.value = '';
-
+        const span = document.createElement('span');
         if(button.classList.contains('projectNameContainer')){
             button.addEventListener('click', (e) =>{
                 task.removeTasks();
@@ -75,7 +75,10 @@ export const projectFormEvent = (() => {
                                 const button = document.createElement('button'); 
                                 button.classList.add('todoTitle'); 
                                 button.innerText = element[`task${j}`]; 
+                                span.innerText = element[`date${j}`];
+                                button.appendChild(span);
                                 taskList.appendChild(button); 
+                                
                             }
                            
                         }    
@@ -92,7 +95,7 @@ export const projectFormEvent = (() => {
 export const taskFormEvent = (() => { 
     todoForm.addEventListener('submit', ()=>{
          task.createTask();
-       
+            console.log('storage::'+ JSON.stringify(storage));
     });
 
 })();
@@ -107,19 +110,21 @@ cancelButton.forEach(element => {
 
 
  inbox.addEventListener('click', (e) =>{
+    task.count = 0;
         task.removeTasks();
         mainTitle.innerText = 'inbox';
-      
-        
         const clickedProjectTitle = e.target.innerText;
         mainTitle.innerText = clickedProjectTitle; 
-
-        
-        for (let i = 0; i < inboxStorage.length; i++) {
+        const span = document.createElement('span');
+        for (let i = 1; i < inboxStorage.length; i++) {
             const element = inboxStorage[i];
+            console.log("log el: "+ element);
+            
             const button = document.createElement('button'); 
-            button.innerText = element;
+            button.innerText = element[`task${task.count}`];
+            span.innerText = element[`date${task.count}`];
             button.classList.add('todoTitle'); 
+            button.appendChild(span);
             taskList.appendChild(button);
             
         }
