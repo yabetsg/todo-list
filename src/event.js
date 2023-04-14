@@ -18,8 +18,9 @@ const taskList = selectors().taskList;
 const mainTitle = selectors().mainTitle;
 const cancelButton = selectors().cancelButton;
 const inbox = selectors().inbox;
+ const clearTask = selectors().checkIcon;
 const todoTaskInput = selectors().todoTaskInput;
-
+const allTaskLists = selectors().allTaskLists;
 export const storage = [];
 storage.push({title:"Inbox"});
 export const addProjectButtonEvent = (() =>{
@@ -59,13 +60,11 @@ export const projectFormEvent = (() => {
         storage.push({title: projectName});
         projectFormContainer.classList.remove('active');
         projectNameInput.value = '';
-        const span = document.createElement('span');
         if(button.classList.contains('projectNameContainer')){
             button.addEventListener('click', (e) =>{
                 task.removeTasks();
                 const clickedProjectTitle = e.target.innerText;
                 mainTitle.innerText = clickedProjectTitle;
-
                 for (let i = 0; i < storage.length; i++) {
                     const element = storage[i];
                     if( element.title === mainTitle.innerText){
@@ -73,10 +72,15 @@ export const projectFormEvent = (() => {
                         for (let j = 0; j < objectKeys.length; j++) { 
                             if(element[`task${j}`]!=undefined){
                                 const button = document.createElement('button'); 
+                                const span = document.createElement('span');
+                                const p = document.createElement('p');
                                 button.classList.add('todoTitle'); 
-                                button.innerText = element[`task${j}`]; 
+                                span.classList.add('taskDueDate');
+                                p.innerText = element[`task${j}`]; 
                                 span.innerText = element[`date${j}`];
+                                button.appendChild(p);
                                 button.appendChild(span);
+                                
                                 taskList.appendChild(button); 
                                 
                             }
@@ -96,9 +100,11 @@ export const taskFormEvent = (() => {
     todoForm.addEventListener('submit', ()=>{
          task.createTask();
             console.log('storage::'+ JSON.stringify(storage));
+            
     });
 
 })();
+
 
 cancelButton.forEach(element => {
     element.addEventListener('click', ()=>{
@@ -109,26 +115,41 @@ cancelButton.forEach(element => {
 }); 
 
 
+// allTaskLists.addEventListener('click',(e)=>{
+//     console.log(e);
+// });
+
+
  inbox.addEventListener('click', (e) =>{
-    task.count = 0;
+   
         task.removeTasks();
         mainTitle.innerText = 'inbox';
         const clickedProjectTitle = e.target.innerText;
         mainTitle.innerText = clickedProjectTitle; 
-        const span = document.createElement('span');
-        for (let i = 1; i < inboxStorage.length; i++) {
-            const element = inboxStorage[i];
-            console.log("log el: "+ element);
-            
-            const button = document.createElement('button'); 
-            button.innerText = element[`task${task.count}`];
-            span.innerText = element[`date${task.count}`];
-            button.classList.add('todoTitle'); 
-            button.appendChild(span);
-            taskList.appendChild(button);
-            
+      
+        for (let i = 0; i < storage.length; i++) {
+            const element = storage[i];
+            if( element != undefined){
+                const objectKeys = Object.keys(element)
+                for (let j = 0; j < objectKeys.length; j++) { 
+                    if(element[`date${j}`]!=undefined){
+                        const button = document.createElement('button'); 
+                        const span = document.createElement('span');
+                        const p = document.createElement('p');
+                        button.classList.add('todoTitle'); 
+                        span.classList.add('taskDueDate');
+                        p.innerText = element[`task${j}`]; 
+                        span.innerText = element[`date${j}`];
+                        button.appendChild(p);
+                        button.appendChild(span);
+                        taskList.appendChild(button); 
+                        
+                    }
+                   
+                }    
         }
         
+     }
     });
 
 const event = new Event('click');

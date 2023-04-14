@@ -1,5 +1,16 @@
 *,*::before,*::after{
     box-sizing: border-box
+    
+}
+
+:root{
+    --main-bg:white;
+    --aside-bg:rgb(247,247,247);
+    --header-bg:#262a2b;
+    --text-color:#374958;
+    --header-font-size:2rem;
+    --title-font-size:1.8rem;
+    --default-font-size:1.2rem;
 }
 body{
     margin: 0;
@@ -7,30 +18,34 @@ body{
 }
 main{
     display: grid;
-    grid-template-columns: 0.3fr 1fr;
+    grid-template-columns: 0.33fr 1fr;
     min-height: calc(100vh - 70px);
+    font-size: 1rem;
 }
 header{
-    background-color: rgb(154, 128, 128);
+    background-image: linear-gradient(to right,#7F7FD5,#91EAE4);
+    font-size: var(--header-font-size);
+    
     min-height: 70px;
     padding: 15px 0px 0px 35px;
 }
-h1{
+h1,h2{
     margin: 0;
 }
 aside{
     padding: 40px 45px 0px 45px;
-    background-color: gray;
+    background-color: var(--aside-bg);
     
 }
 section{
     
-    background-color: rgb(197, 193, 193);
+    background-color: var(--main-bg);
 }
 button{
     width: 100%;
     padding: 10px;
     border-style: none;
+    border-radius: 4px;
 }
 .todoList{
     padding: 40px 45px 0px 45px;
@@ -48,22 +63,26 @@ aside>button{
     display: flex;
     justify-content: flex-start;
     gap: 10px;
-    background-color: gray;
+    background-color: var(--aside-bg);
 }
-aside>button:hover,.projectList>button:hover{
-    background-color: rgb(197, 193, 193);
-}
+
 .addTaskButton{
     display: flex;
     justify-content: flex-start;
     gap: 10px;
-    background-color: gray;
-    background-color: rgb(197, 193, 193);
+   
+    background-color:var(--main-bg);
 }
-.addTaskButton:hover{
-    background-color: gray;
+.addTaskButton:hover,.addProjectButton:hover{
+    border-style: groove;
+    border-color: #81c4e1;
+   
 }
-
+.projectList>button:hover{
+    border:0.1px solid #81c4e1;
+    /* border-color: ; */
+   
+}
 .projectFormContainer{
     display: none;
     flex-direction: column;
@@ -129,53 +148,99 @@ input{
     width: 100%;
     padding: 10px;
     outline: transparent;
+    
+}
+#inbox:hover{
+    border:1px solid;
+    border-color: #81c4e1;
 }
 .projectList>button,.tasks>button{
     display: flex;
     justify-content: flex-start;
     padding-left: 5px;
     gap: 10px;
-    background-color: gray;
+    background-color: var(--aside-bg);
   
 }
-i{
-    font-style: normal;
+*{
+    outline: transparent;
 }
 
 .tasks>button{
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: space-between;
     padding-left: 12px;
     gap: 10px;
-    background-color:  rgb(197, 193, 193);
+    background-color: var(--main-bg);
 }
-.tasks>button::before{
-    content: "\f111";
+
+.tasks>button:hover{
+    background-color: #81c4e1;
+}
+p::before{
+    content: "\f111" "\00a0\00a0\00a0\00a0";
+    
     font-family: "Font Awesome 5 Free";
     font-weight: 100;
+    font-style: normal;
 }
 .projectList>button::before{
     content: "\f03a";
     font-family: "Font Awesome 5 Free";
     font-weight: 900;
 }
-#inbox::before{
+/* #inbox::before{
     content: "\f01c";
     font-family: "Font Awesome 5 Free";
     font-weight: 900;
 
-}
+} */
 #inbox{
-    padding-left: 0px;
-    margin-bottom:10px ;
+    padding-left: 20px;
+    margin-bottom:10px;
+    border-style: none;
+    font-size: var(--default-font-size);
 }
 .dateInput{
    width: 127px; 
    height: 30px;
    /* background-color: inherit; */
    border-style: none;
+   color: wheat;
 }
-.todoTitle>span{
-    margin-left: 500px;
+p{
+    margin: 0;
+}
+
+span{
+    align-self: flex-end;
+}
+h2{
+    font-family: 'MistoBook';
+   font-weight: normal;
+   font-style: normal;
+   color: var(--text-color);
+}
+h1{
+    font-family: 'LieraSansRegular';
+    font-weight: normal;
+    font-style: normal;
+}
+aside>button:focus,.projectList>button:focus{
+    background-color: #81c4e1;
+}
+
+h1{
+    font-weight: bolder;
+    font-size: var(--title-font-size);
+}
+span,p{
+    font-size: var(--default-font-size);
+}
+.taskDueDate{
+    color: #7F7FD5;
+}
+.clear{
+    text-decoration: line-through;
 }

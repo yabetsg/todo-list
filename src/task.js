@@ -17,14 +17,20 @@ export default class Task {
   createTask() {
     
     for (let i = 0; i < storage.length; i++) {
-       inboxStorage.push({});
+      
       const element = storage[i];
       const inboxElement = inboxStorage[i];
       const button = document.createElement('button');
       const date = document.createElement('input');
       const span = document.createElement('span');
+      const div = document.createElement('div');
+      const div2 = document.createElement('div');
+      const icon = document.createElement('i');
+      const p = document.createElement('p');
       date.type = 'date';
-      date.classList.add('dateInput')
+      date.classList.add('dateInput');
+      div.classList.add('leftSide');
+      span.classList.add('taskDueDate')
       let dateValue = dueDate.value;
     
       button.classList.add('todoTitle');
@@ -32,23 +38,22 @@ export default class Task {
       
       if (element.title === mainTitle.innerText) {
         element[`task${this.count}`] = taskName;
-        inboxElement[`task${this.count}`] = taskName;
+       
        
         if(dateValue===''){
           dateValue = 'No Due Date';
         } 
-        inboxElement[`date${this.count}`] = dateValue;
-        element[`date${this.count}`] = dateValue;
-        button.innerText = element[`task${this.count}`];
-        span.innerText = element[`date${this.count}`];
         
-        inboxStorage.push({[`task${this.count}`]:element[`task${this.count}`],[`date${this.count}`]:element[`date${this.count}`]});
-        // inboxStorage[i]push({tasks:element[`task${this.count}`],date:element[`date${this.count}`]}); 
-        // inboxElement[`task${this.count}`];
-        button.appendChild(span);
+        element[`date${this.count}`] = dateValue;
+        p.innerText = element[`task${this.count}`];
+        span.innerText = element[`date${this.count}`];
+      //  div.appendChild(icon);
+        div.appendChild(p);
+        div2.appendChild(span);
+        button.appendChild(div);
+        button.appendChild(div2);
         taskList.appendChild(button);
-        // console.log(element);
-        console.log(inboxStorage);
+        
        
         
         this.count++;

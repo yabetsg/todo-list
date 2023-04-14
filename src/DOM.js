@@ -16,6 +16,7 @@ export const selectors = () => {
     projectNameContainer: document.querySelector('.projectNameContainer'),
     mainTitle: document.querySelector('.mainTitle'),
     inbox: document.getElementById('inbox'),
-    dueDate: document.getElementById('date')
+    dueDate: document.getElementById('date'),
+    checkIcon: document.getElementsByTagName('p')
   };
 };
