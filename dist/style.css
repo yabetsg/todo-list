@@ -189,6 +189,7 @@ p::before{
     content: "\f03a";
     font-family: "Font Awesome 5 Free";
     font-weight: 900;
+    font-size: var(--default-font-size);
 }
 /* #inbox::before{
     content: "\f01c";
@@ -226,6 +227,7 @@ h1{
     font-family: 'LieraSansRegular';
     font-weight: normal;
     font-style: normal;
+    color:var(--text-color)
 }
 aside>button:focus,.projectList>button:focus{
     background-color: #81c4e1;
@@ -243,4 +245,22 @@ span,p{
 }
 .clear{
     text-decoration: line-through;
+}
+.rightSide{
+    display: flex;
+}
+.rightSide>button{
+    width: 20px;
+    padding: 0px 0px 0px 10px;
+    background-color: inherit;
+}
+.rightSide>button:hover{
+    display: flex;
+}
+
+button[aria-hidden="true"]{
+    display: none;
+}
+button[aria-hidden="false"]{
+    display: flex;
 }
