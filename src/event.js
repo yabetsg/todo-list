@@ -98,7 +98,7 @@ export const projectFormEvent = (() => {
 })();
 const deleteMethod = ()=>{
     const deleteTask = document.querySelectorAll(".fa-trash");
-    console.log(deleteTask);
+    
     if (deleteTask[0]) {
         let parents;
         deleteTask.forEach((element)=>{
@@ -111,28 +111,24 @@ const deleteMethod = ()=>{
        
         deleteTask.forEach((element) => {
           element.addEventListener("click", (e) => {
-            console.log(e);
+            console.log(element);
             grandGrandParent = element.parentNode.parentNode;
             grandGrandParent.remove();
-            
+          
             for (let i = 0; i < storage.length; i++) {
               const element = storage[i];
               for (const key in element) {
                 if (element[key] === grandGrandParent.firstChild.textContent ) {
+      
+                  console.log(`date${key.split('')[4]}`);
                   delete element[key];
-                  
+                  delete element[`date${key.split('')[4]}`]
                 }
-                if (element[key] === grandGrandParent.lastChild.textContent) {
-                  console.log("?"+grandGrandParent.lastChild.textContent);
-                  delete element[key];
-                  
-                }
+                
               }
             }
             
-          });
-
-          
+          });       
         });
       }
     }
