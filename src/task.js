@@ -1,6 +1,6 @@
 import { selectors } from "./DOM";
 import { storage , inboxStorage} from "./event";
-
+import { format } from "date-fns";
 
 
 const todoFormContainer = selectors().todoFormContainer;
@@ -23,21 +23,14 @@ export default class Task {
       const button = document.createElement('button');
       const date = document.createElement('input');
       const span = document.createElement('span');
-      const leftSide = document.createElement('div');
-      const rightSide = document.createElement('div');
+      const div = document.createElement('div');
+      const div2 = document.createElement('div');
       const icon = document.createElement('i');
       const p = document.createElement('p');
-      const deleteButton = document.createElement('button');
       date.type = 'date';
       date.classList.add('dateInput');
-      leftSide.classList.add('leftSide');
-      rightSide.classList.add('rightSide');
-      
-      deleteButton.classList.add('fa');
-      deleteButton.classList.add('fa-trash');
-      
-      
-      span.classList.add('taskDueDate');
+      div.classList.add('leftSide');
+      span.classList.add('taskDueDate')
       let dateValue = dueDate.value;
     
       button.classList.add('todoTitle');
@@ -55,11 +48,10 @@ export default class Task {
         p.innerText = element[`task${this.count}`];
         span.innerText = element[`date${this.count}`];
       //  div.appendChild(icon);
-        leftSide.appendChild(p);
-        rightSide.appendChild(span);
-        rightSide.appendChild(deleteButton);
-        button.appendChild(leftSide);
-        button.appendChild(rightSide);
+        div.appendChild(p);
+        div2.appendChild(span);
+        button.appendChild(div);
+        button.appendChild(div2);
         taskList.appendChild(button);
         
        

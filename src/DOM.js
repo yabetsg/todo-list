@@ -17,7 +17,6 @@ export const selectors = () => {
     mainTitle: document.querySelector('.mainTitle'),
     inbox: document.getElementById('inbox'),
     dueDate: document.getElementById('date'),
-    checkIcon: document.getElementsByTagName('p'),
-    deleteButton: document.createElement('button')
+    checkIcon: document.getElementsByTagName('p')
   };
 };
