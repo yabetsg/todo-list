@@ -21,20 +21,25 @@ export const selectors = () => {
     checkIcon: document.getElementsByTagName("p"),
   };
 };
-
-export const activateProjectForm = () => {
-  selectors().todoFormContainer.classList.remove("active");
-  selectors().projectFormContainer.classList.add("active");
-};
-export const activateTaskForm = () => {
+export const cancelForm = () => {
   selectors().projectFormContainer.classList.remove("active");
-  selectors().todoFormContainer.classList.add("active");
+  selectors().todoFormContainer.classList.remove("active");
 };
-export const renderSavedTasks = (element) => {
+
+
+export const activateForm = (projectForm, taskForm) => {
+  if (projectForm) {
+    selectors().todoFormContainer.classList.remove("active");
+    selectors().projectFormContainer.classList.add("active");
+  } else if (taskForm) {
+    selectors().projectFormContainer.classList.remove("active");
+    selectors().todoFormContainer.classList.add("active");
+  }
+};
+export const renderSavedTasks = (element,includeDeleteButton) => {
   const objectKeys = Object.keys(element);
   for (let j = 0; j < objectKeys.length; j++) {
     if (element[`task${j}`] != undefined) {
-      
       const button = document.createElement("button");
       const span = document.createElement("span");
       const p = document.createElement("p");
@@ -50,8 +55,11 @@ export const renderSavedTasks = (element) => {
       p.innerText = element[`task${j}`];
       span.innerText = element[`date${j}`];
       leftSide.appendChild(p);
-      rightSide.appendChild(span);
-      rightSide.appendChild(deleteButton);
+      if(includeDeleteButton){
+         rightSide.appendChild(span);
+        rightSide.appendChild(deleteButton);
+      }
+    
       button.appendChild(leftSide);
       button.appendChild(rightSide);
       selectors().taskList.appendChild(button);
@@ -59,20 +67,19 @@ export const renderSavedTasks = (element) => {
   }
 };
 
-export const renderProjectName = (storage)=>{
-    const button = document.createElement("button");
-    button.classList.add("projectNameContainer");
-    const icon = document.createElement("i");
-    const titleName = document.createElement("span");
-    const projectName =  selectors().projectNameInput.value;
-
-    titleName.innerText = projectName;
-    console.log("un:" + projectName);
-    button.appendChild(icon);
-    button.appendChild(titleName);
-    selectors().projectList.appendChild(button);
-    storage.push({ title: projectName });
-    selectors().projectFormContainer.classList.remove("active");
-    selectors().projectNameInput.value = "";
-    return {button};
-}
+export const renderProjectName = (storage) => {
+  const button = document.createElement("button");
+  button.classList.add("projectNameContainer");
+  const icon = document.createElement("i");
+  const titleName = document.createElement("span");
+  const projectName = selectors().projectNameInput.value;
+  titleName.innerText = projectName;
+  console.log("un:" + projectName);
+  button.appendChild(icon);
+  button.appendChild(titleName);
+  selectors().projectList.appendChild(button);
+  storage.push({ title: projectName });
+  selectors().projectFormContainer.classList.remove("active");
+  selectors().projectNameInput.value = "";
+  return { button };
+};
